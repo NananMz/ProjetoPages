@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Pages - Escopo e Diretrizes do Serviço</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #e0e7ff;
+            --primary-dark: #4338ca;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --dark: #0f172a;
+            --slate: #475569;
+            --light-bg: #f8fafc;
+            --border: #e2e8f0;
+            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --hover-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #1e1b4b 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            background-color: var(--primary);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 45px 0 20px 0;
+            position: relative;
+            padding-left: 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 15%;
+            height: 70%;
+            width: 5px;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            shadow: var(--card-shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .card-header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .price-tag span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--slate);
+            margin-left: 5px;
+        }
+
+        .list-items {
+            list-style: none;
+        }
+
+        .list-items li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: var(--slate);
+            font-size: 0.95rem;
+        }
+
+        .list-items li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .list-items.bullet li::before {
+            content: "•";
+            color: var(--primary);
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            text-align: left;
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            color: var(--slate);
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .font-bold {
+            font-weight: 600;
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nested-box {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px dashed var(--border);
+        }
+
+        .category-tab {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .category-info h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .category-info p {
+            color: var(--slate);
+            font-size: 0.95rem;
+        }
+
+        .tag-premium {
+            background-color: #fef3c7;
+            color: #d97706;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .category-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <span class="badge">Playbook Operacional</span>
+            <h1>PROJETO PAGES</h1>
+            <p>Estrutura comercial, modelos de hospedagem, políticas de suporte e tabelas de precificação do ecossistema de páginas de alta conversão.</p>
+        </div>
+    </header>
+
+    <main>
+        
+        <!-- COMO FUNCIONARÁ O SERVIÇO -->
+        <h2 class="section-title">Como funcionará o serviço</h2>
+        <div class="grid-2">
+            <!-- HOSPEDAGEM GRÁTIS -->
+            <div class="card">
+                <div class="card-header">
+                    <span style="background-color: var(--success-light); color: var(--success);" class="badge">Opção 01</span>
+                    <div class="card-title">Hospedagem no GitHub Pages</div>
+                </div>
+                <p style="margin-bottom: 15px; color: var(--slate);">Desenvolvimento estruturado nativamente em HTML, CSS e JavaScript com deploy automatizado e custo zero de infraestrutura.</p>
+                <ul class="list-items">
+                    <li>Sem custo mensal de manutenção de servidor.</li>
+                    <li>URL padrão profissional e segura (HTTPS).</li>
+                    <li class="font-bold">Custo de infraestrutura para o cliente: R$ 0</li>
+                </ul>
+                <div class="nested-box">
+                    <span class="font-bold" style="font-size: 0.85rem; color: var(--dark); display: block; margin-bottom: 5px;">Formatos de URL Disponíveis:</span>
+                    <code style="color: var(--primary); font-size: 0.9rem; display: block; margin-bottom: 4px;">seunome.github.io/produto</code>
+                    <code style="color: var(--primary); font-size: 0.9rem; display: block;">produto.github.io</code>
+                </div>
+            </div>
+
+            <!-- DOMÍNIO PRÓPRIO -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="badge">Opção 02</span>
+                    <div class="card-title">Domínio Próprio Personalizado</div>
+                </div>
+                <p style="margin-bottom: 15px; color: var(--slate);">Configuração de DNS avançada apontando o domínio comprado pelo cliente diretamente para o ecossistema do GitHub Pages.</p>
+                <ul class="list-items">
+                    <li>Aumento significativo de autoridade de marca.</li>
+                    <li>Exemplos: <code>ovarioazul.com</code> ou <code>projetox.com.br</code></li>
+                    <li>Pagamento integral dos custos antes da aquisição dos ativos.</li>
+                </ul>
+                
+                <div class="nested-box" style="padding: 10px 15px;">
+                    <span class="font-bold" style="font-size: 0.85rem; color: var(--dark); display: block; margin-bottom: 8px;">Simulação de Investimento de Domínio:</span>
+                    <table style="margin-bottom: 0; box-shadow: none; font-size: 0.85rem;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 8px 12px;">Item / Serviço</th>
+                                <th style="padding: 8px 12px;" class="text-right">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px 12px;">Registro Anual do Domínio</td>
+                                <td style="padding: 8px 12px;" class="text-right">R$ 40,00 a R$ 70,00/ano</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 12px;">Taxa de Configuração/Apontamento</td>
+                                <td style="padding: 8px 12px;" class="text-right">R$ 20,00</td>
+                            </tr>
+                            <tr style="background-color: #f1f5f9; font-weight: 600;">
+                                <td style="padding: 8px 12px; color: var(--dark);">Investimento Total Estimado</td>
+                                <td style="padding: 8px 12px; color: var(--primary);" class="text-right">R$ 60,00 a R$ 90,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUPORTE E RECEITA RECORRENTE -->
+        <h2 class="section-title">Garantia de Suporte & Recorrência</h2>
+        <div style="background-color: white; border-radius: 12px; padding: 25px; border: 1px solid var(--border); box-shadow: var(--card-shadow); margin-bottom: 25px;">
+            <span style="background-color: #d1fae5; color: var(--success); text-transform: uppercase; font-weight: 600; font-size: 0.75rem; padding: 4px 10px; border-radius: 6px;">Período de Proteção Inicial</span>
+            <h4 style="margin-top: 10px; font-size: 1.15rem; color: var(--dark);">7 Dias de Ajustes Gratuitos Pós-Entrega</h4>
+            <p style="color: var(--slate); font-size: 0.95rem; margin-bottom: 15px;">Garantia total para estabilização da página e refinamentos estruturais iniciais sem custos adicionais.</p>
+            <div class="grid-3" style="gap: 15px;">
+                <div style="background: var(--light-bg); padding: 12px; border-radius: 8px; border-left: 3px solid var(--success); font-size: 0.9rem; color: var(--slate);">✓ Correções ágeis de bugs</div>
+                <div style="background: var(--light-bg); padding: 12px; border-radius: 8px; border-left: 3px solid var(--success); font-size: 0.9rem; color: var(--slate);">✓ Alteração de textos</div>
+                <div style="background: var(--light-bg); padding: 12px; border-radius: 8px; border-left: 3px solid var(--success); font-size: 0.9rem; color: var(--slate);">✓ Substituição de imagens</div>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <!-- PLANO BÁSICO -->
+            <div class="card" style="border-top: 4px solid var(--slate);">
+                <div class="card-header">
+                    <div class="card-title">Plano de Suporte Básico</div>
+                </div>
+                <div class="price-tag">R$ 19,90<span>/mês</span></div>
+                <p style="color: var(--slate); font-size: 0.9rem; margin-bottom: 20px;">Ideal para manutenção preventiva e pequenas atualizações recorrentes de conteúdo.</p>
+                <ul class="list-items bullet">
+                    <li>Ajustes estruturais simples.</li>
+                    <li>Substituição e atualização de textos.</li>
+                    <li>Troca de imagens e banners promocionais.</li>
+                    <li>Inserção e redirecionamento de novos links.</li>
+                </ul>
+            </div>
+
+            <!-- PLANO PROFISSIONAL -->
+            <div class="card" style="border-top: 4px solid var(--primary); background: linear-gradient(to bottom, white 0%, #fafafa 100%);">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="card-title">Plano de Suporte Profissional</div>
+                    <span style="background-color: var(--primary-light); color: var(--primary); font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; font-weight: bold;">Mais Vendido</span>
+                </div>
+                <div class="price-tag">R$ 39,90<span>/mês</span></div>
+                <p style="color: var(--slate); font-size: 0.9rem; margin-bottom: 20px;">Focado em marketing digital avançado, tagueamento estruturado e otimização contínua.</p>
+                <ul class="list-items bullet">
+                    <li class="font-bold" style="color: var(--dark);">Inclusão de todos os benefícios do Plano Básico.</li>
+                    <li>Instalação e monitoramento do Pixel do Facebook.</li>
+                    <li>Implementação de Pixel do TikTok.</li>
+                    <li>Integração completa com Google Analytics.</li>
+                    <li>Pequenas melhorias de layout e performance na página.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TABELAS DE PREÇOS -->
+        <h2 class="section-title">Matriz de Precificação Estruturada</h2>
+
+        <!-- CATEGORIA BÁSICA -->
+        <div class="category-tab">
+            <div class="category-header">
+                <div class="category-info">
+                    <h3>Categoria Básica</h3>
+                    <p>Desenvolvimento focado em agilidade, ideal para quem está iniciando operações digitais.</p>
+                </div>
+                <span class="tag-premium" style="background-color: #e2e8f0; color: #475569;">Padrão Essential</span>
+            </div>
+
+            <div class="grid-2" style="grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div>
+                    <h4 style="margin-bottom: 12px; color: var(--dark); font-size: 1.1rem;">Preço por Página Individual</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tipo de Página</th>
+                                <th class="text-right">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Página Principal (Front)</td><td class="text-right font-bold text-primary">R$ 50,00</td></tr>
+                            <tr><td>Página de Upsell</td><td class="text-right font-bold">R$ 30,00</td></tr>
+                            <tr><td>Página de Downsell</td><td class="text-right font-bold">R$ 30,00</td></tr>
+                            <tr><td>Página de Crosssell</td><td class="text-right font-bold">R$ 30,00</td></tr>
+                            <tr><td>Página de Obrigado</td><td class="text-right font-bold">R$ 20,00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h4 style="margin-bottom: 12px; color: var(--dark); font-size: 1.1rem;">Pacotes Promocionais Combo</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="background: var(--light-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span class="font-bold" style="display: block; font-size: 0.95rem;">Combo Essencial</span>
+                                <span style="font-size: 0.8rem; color: var(--slate);">Front + Upsell + Downsell</span>
+                            </div>
+                            <span class="font-bold text-primary" style="font-size: 1.2rem;">R$ 110,00</span>
+                        </div>
+                        <div style="background: var(--light-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span class="font-bold" style="display: block; font-size: 0.95rem;">Combo Standard</span>
+                                <span style="font-size: 0.8rem; color: var(--slate);">Front + Upsell + Downsell + Obrigado</span>
+                            </div>
+                            <span class="font-bold text-primary" style="font-size: 1.2rem;">R$ 130,00</span>
+                        </div>
+                        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span class="font-bold" style="display: block; font-size: 0.95rem; color: #166534;">Funil Completo</span>
+                                <span style="font-size: 0.8rem; color: #166534;">Front + Upsell + Downsell + Crosssell + Obrigado</span>
+                            </div>
+                            <span class="font-bold" style="font-size: 1.3rem; color: var(--success);">R$ 160,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORIA PROFISSIONAL -->
+        <div class="category-tab" style="border-left: 4px solid #d97706;">
+            <div class="category-header">
+                <div class="category-info">
+                    <h3>Categoria Profissional</h3>
+                    <p>Design altamente sofisticado, animações fluidas avançadas, forte personalização e maior densidade de seções.</p>
+                </div>
+                <span class="tag-premium">Alta Performance</span>
+            </div>
+
+            <div class="grid-2" style="grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div>
+                    <h4 style="margin-bottom: 12px; color: var(--dark); font-size: 1.1rem;">Preço por Página Individual</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tipo de Página</th>
+                                <th class="text-right">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Página Principal (Front)</td><td class="text-right font-bold text-primary">R$ 80,00</td></tr>
+                            <tr><td>Página de Upsell</td><td class="text-right font-bold">R$ 50,00</td></tr>
+                            <tr><td>Página de Downsell</td><td class="text-right font-bold">R$ 50,00</td></tr>
+                            <tr><td>Página de Crosssell</td><td class="text-right font-bold">R$ 50,00</td></tr>
+                            <tr><td>Página de Obrigado</td><td class="text-right font-bold">R$ 30,00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h4 style="margin-bottom: 12px; color: var(--dark); font-size: 1.1rem;">Pacotes Promocionais Combo</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="background: var(--light-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span class="font-bold" style="display: block; font-size: 0.95rem;">Combo Pro Max</span>
+                                <span style="font-size: 0.8rem; color: var(--slate);">Front + Upsell + Downsell</span>
+                            </div>
+                            <span class="font-bold text-primary" style="font-size: 1.2rem;">R$ 180,00</span>
+                        </div>
+                        <div style="background: var(--light-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span class="font-bold" style="display: block; font-size: 0.95rem;">Combo Pro Ultra</span>
+                                <span style="font-size: 0.8rem; color: var(--slate);">Front + Upsell + Downsell + Obrigado</span>
+                            </div>
+                            <span class="font-bold text-primary" style="font-size: 1.2rem;">R$ 210,00</span>
+                        </div>
+                        <div style="background: #fffbeb; border: 1px solid #fde68a; padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span class="font-bold" style="display: block; font-size: 0.95rem; color: #92400e;">Funil Completo Pro</span>
+                                <span style="font-size: 0.8rem; color: #92400e;">Front + Upsell + Downsell + Crosssell + Obrigado</span>
+                            </div>
+                            <span class="font-bold" style="font-size: 1.3rem; color: #d97706;">R$ 260,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVIÇOS EXTRAS -->
+        <h2 class="section-title">Serviços e Ativos Extras</h2>
+        <p style="color: var(--slate); margin-bottom: 20px; font-size: 0.95rem;">Elementos adicionais e integrações sob demanda para potencializar as conversões das páginas.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Descrição do Serviço / Integração Extra</th>
+                    <th class="text-right" style="width: 250px;">Valor do Investimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Configuração e apontamento de Domínio Personalizado</td>
+                    <td class="text-right font-bold text-primary">R$ 20,00</td>
+                </tr>
+                <tr>
+                    <td>Configuração e deploy no ecossistema GitHub Pages</td>
+                    <td class="text-right font-bold" style="color: var(--success);">Gratuito</td>
+                </tr>
+                <tr>
+                    <td>Implementação estruturada de Pixel do Facebook</td>
+                    <td class="text-right font-bold">R$ 15,00</td>
+                </tr>
+                <tr>
+                    <td>Implementação estruturada de Pixel do TikTok</td>
+                    <td class="text-right font-bold">R$ 15,00</td>
+                </tr>
+                <tr>
+                    <td>Integração avançada com Google Analytics</td>
+                    <td class="text-right font-bold">R$ 15,00</td>
+                </tr>
+                <tr>
+                    <td>Desenvolvimento de Formulário de Captura de Leads nativo</td>
+                    <td class="text-right font-bold">R$ 15,00</td>
+                </tr>
+                <tr>
+                    <td>Acoplamento de Botão Flutuante de WhatsApp direcionado</td>
+                    <td class="text-right font-bold">R$ 10,00</td>
+                </tr>
+                <tr>
+                    <td>Instalação de Script de Contador Regressivo (Gatilho de Escassez)</td>
+                    <td class="text-right font-bold">R$ 10,00</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+</body>
+</html>
