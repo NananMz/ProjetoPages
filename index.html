@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Pages - Mobile Playbook</title>
+    <title>Projeto Pages - Escopo Mobile First</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,9 +17,7 @@
             --slate: #475569;
             --light-bg: #f8fafc;
             --border: #e2e8f0;
-            --amber-bg: #fffbeb;
-            --amber-border: #fde68a;
-            --amber-text: #b45309;
+            --card-shadow: 0 2px 4px rgb(0 0 0 / 0.04);
         }
 
         * {
@@ -41,9 +39,9 @@
         header {
             background: linear-gradient(135deg, var(--dark) 0%, #1e1b4b 100%);
             color: white;
-            padding: 35px 20px 30px 20px;
+            padding: 35px 20px;
             text-align: center;
-            border-bottom: 3px solid var(--primary);
+            border-bottom: 4px solid var(--primary);
         }
 
         .badge {
@@ -54,7 +52,7 @@
             font-size: 0.75rem;
             font-weight: 600;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -69,7 +67,6 @@
         header p {
             font-size: 0.9rem;
             color: #94a3b8;
-            max-width: 100%;
             font-weight: 300;
         }
 
@@ -81,20 +78,9 @@
             font-size: 1.3rem;
             font-weight: 700;
             margin: 30px 0 15px 0;
-            position: relative;
-            padding-left: 12px;
+            padding-left: 10px;
             color: var(--dark);
-        }
-
-        .section-title::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 15%;
-            height: 70%;
-            width: 4px;
-            background-color: var(--primary);
-            border-radius: 2px;
+            border-left: 4px solid var(--primary);
         }
 
         .card {
@@ -102,8 +88,8 @@
             border-radius: 12px;
             padding: 20px;
             border: 1px solid var(--border);
+            box-shadow: var(--card-shadow);
             margin-bottom: 16px;
-            box-shadow: 0 1px 3px rgb(0 0 0 / 0.05);
         }
 
         .card-header {
@@ -116,7 +102,6 @@
             font-size: 1.15rem;
             font-weight: 600;
             color: var(--dark);
-            margin-top: 5px;
         }
 
         .price-tag {
@@ -162,35 +147,15 @@
             top: -1px;
         }
 
-        .nested-box {
-            background-color: var(--light-bg);
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 12px;
-            border: 1px dashed var(--border);
-        }
-
-        code {
-            font-family: monospace;
-            background: #e2e8f0;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #c2410c;
-            font-size: 0.85rem;
-            word-break: break-all;
-            display: inline-block;
-            margin: 2px 0;
-        }
-
-        /* Tabela Otimizada para Celular */
+        /* Tabelas adaptadas para Mobile */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            margin-bottom: 20px;
-            border-radius: 8px;
+            margin-bottom: 16px;
+            border-radius: 12px;
             border: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgb(0 0 0 / 0.05);
+            box-shadow: var(--card-shadow);
         }
 
         table {
@@ -233,65 +198,82 @@
             color: var(--primary);
         }
 
-        /* Blocos de Categoria do Portfólio */
-        .category-block {
+        .nested-box {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            border: 1px dashed var(--border);
+        }
+
+        .category-tab {
             background: white;
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 16px;
+            padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgb(0 0 0 / 0.05);
+            box-shadow: var(--card-shadow);
         }
 
-        .category-header-mobile {
+        .category-header {
+            margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--light-bg);
-            padding-bottom: 10px;
+            align-items: flex-start;
+            gap: 10px;
         }
 
-        .category-header-mobile h3 {
-            font-size: 1.15rem;
+        .category-info h3 {
+            font-size: 1.25rem;
             color: var(--dark);
+            margin-bottom: 2px;
         }
 
-        .tag-mobile {
-            font-size: 0.75rem;
+        .category-info p {
+            color: var(--slate);
+            font-size: 0.85rem;
+        }
+
+        .tag-premium {
+            background-color: #fef3c7;
+            color: #d97706;
             padding: 2px 8px;
             border-radius: 8px;
+            font-size: 0.75rem;
             font-weight: 600;
-            background-color: var(--primary-light);
-            color: var(--primary);
+            white-space: nowrap;
         }
 
-        .combo-card {
+        .combo-box {
             background: var(--light-bg);
             border: 1px solid var(--border);
             padding: 12px;
             border-radius: 8px;
-            margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 10px;
         }
 
-        .combo-card.highlight {
-            background: #f0fdf4;
-            border-color: #bbf7d0;
+        .combo-box:last-child {
+            margin-bottom: 0;
         }
 
-        .combo-card.highlight-amber {
-            background: var(--amber-bg);
-            border-color: var(--amber-border);
-        }
-
-        .sub-heading {
-            font-size: 0.95rem;
-            color: var(--dark);
+        .combo-title {
             font-weight: 600;
-            margin: 15px 0 8px 0;
+            font-size: 0.85rem;
+            display: block;
+        }
+
+        .combo-sub {
+            font-size: 0.75rem;
+            color: var(--slate);
+            display: block;
+        }
+
+        .combo-price {
+            font-weight: 600;
+            font-size: 1rem;
         }
     </style>
 </head>
@@ -300,7 +282,7 @@
     <header>
         <span class="badge">Playbook Mobile</span>
         <h1>PROJETO PAGES</h1>
-        <p>Estrutura comercial, modelos de hospedagem e tabelas de precificação na palma da mão.</p>
+        <p>Estrutura comercial, modelos de hospedagem, suporte e precificação otimizados para leitura móvel rápida.</p>
     </header>
 
     <main>
@@ -314,102 +296,107 @@
                 <span style="background-color: var(--success-light); color: var(--success);" class="badge">Opção 01</span>
                 <div class="card-title">Hospedagem no GitHub Pages</div>
             </div>
-            <p style="margin-bottom: 12px; color: var(--slate); font-size: 0.85rem;">Desenvolvimento estruturado nativamente em HTML/CSS/JS com deploy e custo zero de infraestrutura.</p>
+            <p style="margin-bottom: 12px; color: var(--slate);">Você cria as páginas em HTML/CSS/JS. Hospedagem direta no ecossistema sem custo mensal.</p>
             <ul class="list-items">
-                <li>Sem custo mensal de servidor.</li>
+                <li>Sem custo mensal.</li>
                 <li class="font-bold">Custo para o cliente: R$ 0</li>
             </ul>
             <div class="nested-box">
-                <span class="font-bold" style="font-size: 0.8rem; color: var(--dark); display: block; margin-bottom: 4px;">URLs de Exemplo:</span>
-                <code>seunome.github.io/produto</code>
-                <code>produto.github.io</code>
+                <span class="font-bold" style="font-size: 0.8rem; color: var(--dark); display: block; margin-bottom: 4px;">URL do tipo:</span>
+                <code style="color: var(--primary); font-size: 0.85rem; display: block; word-break: break-all; margin-bottom: 4px;">seunome.github.io/produto</code>
+                <span style="font-size: 0.8rem; color: var(--slate); display: block; margin: 2px 0;">ou</span>
+                <code style="color: var(--primary); font-size: 0.85rem; display: block; word-break: break-all;">produto.github.io</code>
+                <span style="font-size: 0.75rem; color: var(--slate); display: block; margin-top: 4px;">*Dependendo da configuração.</span>
             </div>
         </div>
 
         <!-- DOMÍNIO PRÓPRIO -->
         <div class="card">
             <div class="card-header">
-                <span class="badge" style="background-color: #64748b;">Opção 02</span>
+                <span class="badge">Opção 02</span>
                 <div class="card-title">Domínio Próprio</div>
             </div>
-            <p style="margin-bottom: 12px; color: var(--slate); font-size: 0.85rem;">Caso o cliente queira links como: <code>ovarioazul.com</code> ou <code>projetox.com.br</code>.</p>
+            <p style="margin-bottom: 12px; color: var(--slate);">Caso o cliente queira domínios como: <code>ovarioazul.com</code> ou <code>projetox.com.br</code>, etc.</p>
             <ul class="list-items">
-                <li>Você compra o domínio e aponta para o GitHub Pages.</li>
-                <li class="font-bold">O cliente paga antes da compra.</li>
+                <li>Você compra o domínio e configura apontando para o GitHub Pages.</li>
+                <li>O cliente paga o valor do domínio + taxa de configuração.</li>
+                <li class="font-bold">Você recebe antes da compra.</li>
             </ul>
             
-            <div class="table-responsive" style="margin-top: 12px; margin-bottom: 0;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Serviço</th>
-                            <th class="text-right">Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Registro domínio</td><td class="text-right">R$ 40-70/ano</td></tr>
-                        <tr><td>Configuração</td><td class="text-right">R$ 20</td></tr>
-                        <tr style="background-color: #f8fafc; font-weight: 600;">
-                            <td style="color: var(--dark);">Total</td>
-                            <td class="text-right text-primary">R$ 60-90</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="nested-box" style="padding: 10px 8px;">
+                <span class="font-bold" style="font-size: 0.8rem; color: var(--dark); display: block; margin-bottom: 6px;">Exemplo de Custo:</span>
+                <div class="table-responsive" style="margin-bottom: 0; border-radius: 6px; box-shadow: none;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="padding: 6px 10px;">Serviço</th>
+                                <th style="padding: 6px 10px;" class="text-right">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 6px 10px;">Registro do domínio</td><td style="padding: 6px 10px;" class="text-right">R$ 40–70/ano</td></tr>
+                            <tr><td style="padding: 6px 10px;">Configuração</td><td style="padding: 6px 10px;" class="text-right">R$ 20</td></tr>
+                            <tr style="background-color: #f1f5f9; font-weight: 600;"><td style="padding: 6px 10px; color: var(--dark);">Total</td><td style="padding: 6px 10px; color: var(--primary);" class="text-right">R$ 60–90</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <!-- SUPORTE E RECORRÊNCIA -->
-        <h2 class="section-title">Garantia de Suporte</h2>
-        
+        <!-- SUPORTE -->
+        <h2 class="section-title">Garantia de suporte</h2>
         <div class="card" style="border-left: 4px solid var(--success);">
-            <span style="background-color: var(--success-light); color: var(--success); font-weight: 600; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px;">PÓS-ENTREGA</span>
-            <div class="card-title" style="margin-bottom: 8px;">7 Dias de Ajustes Gratuitos</div>
-            <ul class="list-items" style="font-size: 0.85rem;">
+            <span style="background-color: #d1fae5; color: var(--success);" class="badge">Após a entrega</span>
+            <h4 style="font-size: 1rem; margin: 4px 0 8px 0; color: var(--dark);">7 dias de ajustes gratuitos</h4>
+            <ul class="list-items">
                 <li>Correções de bugs.</li>
                 <li>Alteração de textos.</li>
                 <li>Troca de imagens.</li>
             </ul>
         </div>
 
-        <div class="sub-heading">Planos após os 7 dias (Recorrência):</div>
+        <p style="color: var(--slate); font-weight: 600; font-size: 0.85rem; margin: 15px 0 10px 4px; text-transform: uppercase; letter-spacing: 0.5px;">Após os 7 dias (Receita Recorrente):</p>
 
         <!-- PLANO BÁSICO -->
-        <div class="card">
+        <div class="card" style="border-top: 3px solid var(--slate);">
             <div class="card-title">Plano Básico</div>
             <div class="price-tag">R$ 19,90<span>/mês</span></div>
             <ul class="list-items bullet">
                 <li>Ajustes simples.</li>
-                <li>Troca de textos e imagens.</li>
+                <li>Troca de textos.</li>
+                <li>Troca de imagens.</li>
                 <li>Inserção de novos links.</li>
             </ul>
         </div>
 
         <!-- PLANO PROFISSIONAL -->
-        <div class="card" style="border: 1px solid var(--primary-light); background: linear-gradient(to bottom, white, #fafafa);">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="card-title">Plano Profissional</div>
-                <span class="tag-mobile">Recorrente</span>
-            </div>
+        <div class="card" style="border-top: 3px solid var(--primary);">
+            <div class="card-title">Plano Profissional</div>
             <div class="price-tag">R$ 39,90<span>/mês</span></div>
             <ul class="list-items bullet">
-                <li class="font-bold" style="color: var(--dark);">Tudo do plano básico.</li>
-                <li>Pixel Facebook e TikTok.</li>
+                <li class="font-bold" style="color: var(--dark);">Tudo do básico.</li>
+                <li>Pixel Facebook.</li>
+                <li>Pixel TikTok.</li>
                 <li>Google Analytics.</li>
                 <li>Pequenas melhorias na página.</li>
             </ul>
+            <div style="background-color: var(--primary-light); color: var(--primary); text-align: center; padding: 6px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; margin-top: 12px;">
+                Gera receita recorrente
+            </div>
         </div>
 
-        <!-- TABELAS DE PREÇOS -->
-        <h2 class="section-title">Tabela de Preços</h2>
+        <!-- TABELA DE PREÇOS -->
+        <h2 class="section-title">Tabela de preços</h2>
 
         <!-- CATEGORIA BÁSICA -->
-        <div class="category-block">
-            <div class="category-header-mobile">
-                <h3>Categoria Básica</h3>
-                <span class="tag-mobile" style="background-color: #f1f5f9; color: var(--slate);">Iniciante</span>
+        <div class="category-tab">
+            <div class="category-header">
+                <div class="category-info">
+                    <h3>Categoria Básica</h3>
+                    <p>Para quem está começando.</p>
+                </div>
             </div>
-            <p style="color: var(--slate); font-size: 0.8rem; margin-bottom: 12px;">Para quem está começando.</p>
-            
+
             <div class="table-responsive">
                 <table>
                     <thead>
@@ -420,38 +407,46 @@
                     </thead>
                     <tbody>
                         <tr><td>Front</td><td class="text-right font-bold text-primary">R$ 50</td></tr>
-                        <tr><td>Upsell</td><td class="text-right">R$ 30</td></tr>
-                        <tr><td>Downsell</td><td class="text-right">R$ 30</td></tr>
-                        <tr><td>Crosssell</td><td class="text-right">R$ 30</td></tr>
-                        <tr><td>Obrigado</td><td class="text-right">R$ 20</td></tr>
+                        <tr><td>Upsell</td><td class="text-right font-bold">R$ 30</td></tr>
+                        <tr><td>Downsell</td><td class="text-right font-bold">R$ 30</td></tr>
+                        <tr><td>Crosssell</td><td class="text-right font-bold">R$ 30</td></tr>
+                        <tr><td>Obrigado</td><td class="text-right font-bold">R$ 20</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="sub-heading" style="margin-top: 5px;">Pacotes (Combos):</div>
-            
-            <div class="combo-card">
-                <span style="font-size: 0.85rem;">Front + Upsell + Downsell</span>
-                <span class="font-bold text-primary">R$ 110</span>
+            <p style="font-weight: 600; font-size: 0.8rem; color: var(--dark); margin: 15px 0 8px 2px; text-transform: uppercase;">Pacotes:</p>
+            <div class="combo-box">
+                <div>
+                    <span class="combo-title">Front + Upsell + Downsell</span>
+                </div>
+                <span class="combo-price text-primary">R$ 110</span>
             </div>
-            <div class="combo-card">
-                <span style="font-size: 0.85rem;">Front + Up + Down + Obrigado</span>
-                <span class="font-bold text-primary">R$ 130</span>
+            <div class="combo-box">
+                <div>
+                    <span class="combo-title">Front + Upsell + Downsell + Obrigado</span>
+                </div>
+                <span class="combo-price text-primary">R$ 130</span>
             </div>
-            <div class="combo-card highlight">
-                <span class="font-bold" style="color: #166534; font-size: 0.85rem;">Funil Completo</span>
-                <span class="font-bold" style="color: var(--success);">R$ 160</span>
+            <div class="combo-box" style="background: #f0fdf4; border-color: #bbf7d0;">
+                <div>
+                    <span class="combo-title" style="color: #166534;">Funil completo</span>
+                    <span class="combo-sub" style="color: #166534;">Front + Upsell + Downsell + Crosssell + Obrigado</span>
+                </div>
+                <span class="combo-price" style="color: var(--success);">R$ 160</span>
             </div>
         </div>
 
         <!-- CATEGORIA PROFISSIONAL -->
-        <div class="category-block" style="border-top: 3px solid var(--amber-text);">
-            <div class="category-header-mobile">
-                <h3>Categoria Profissional</h3>
-                <span class="tag-mobile" style="background-color: var(--amber-bg); color: var(--amber-text);">Premium</span>
+        <div class="category-tab" style="border-left: 3px solid #d97706;">
+            <div class="category-header">
+                <div class="category-info">
+                    <h3>Categoria Profissional</h3>
+                    <p>Design mais elaborado, mais animações, mais personalização e mais seções.</p>
+                </div>
+                <span class="tag-premium">Premium</span>
             </div>
-            <p style="color: var(--slate); font-size: 0.8rem; margin-bottom: 12px;">Design mais elaborado, mais animações, seções e personalização.</p>
-            
+
             <div class="table-responsive">
                 <table>
                     <thead>
@@ -462,33 +457,38 @@
                     </thead>
                     <tbody>
                         <tr><td>Front</td><td class="text-right font-bold text-primary">R$ 80</td></tr>
-                        <tr><td>Upsell</td><td class="text-right">R$ 50</td></tr>
-                        <tr><td>Downsell</td><td class="text-right">R$ 50</td></tr>
-                        <tr><td>Crosssell</td><td class="text-right">R$ 50</td></tr>
-                        <tr><td>Obrigado</td><td class="text-right">R$ 30</td></tr>
+                        <tr><td>Upsell</td><td class="text-right font-bold">R$ 50</td></tr>
+                        <tr><td>Downsell</td><td class="text-right font-bold">R$ 50</td></tr>
+                        <tr><td>Crosssell</td><td class="text-right font-bold">R$ 50</td></tr>
+                        <tr><td>Obrigado</td><td class="text-right font-bold">R$ 30</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="sub-heading" style="margin-top: 5px;">Pacotes (Combos):</div>
-            
-            <div class="combo-card">
-                <span style="font-size: 0.85rem;">Front + Upsell + Downsell</span>
-                <span class="font-bold text-primary">R$ 180</span>
+            <p style="font-weight: 600; font-size: 0.8rem; color: var(--dark); margin: 15px 0 8px 2px; text-transform: uppercase;">Pacotes:</p>
+            <div class="combo-box">
+                <div>
+                    <span class="combo-title">Front + Upsell + Downsell</span>
+                </div>
+                <span class="combo-price text-primary">R$ 180</span>
             </div>
-            <div class="combo-card">
-                <span style="font-size: 0.85rem;">Front + Up + Down + Obrigado</span>
-                <span class="font-bold text-primary">R$ 210</span>
+            <div class="combo-box">
+                <div>
+                    <span class="combo-title">Front + Upsell + Downsell + Obrigado</span>
+                </div>
+                <span class="combo-price text-primary">R$ 210</span>
             </div>
-            <div class="combo-card highlight-amber">
-                <span class="font-bold" style="color: var(--amber-text); font-size: 0.85rem;">Funil Completo Pro</span>
-                <span class="font-bold" style="color: var(--amber-text);">R$ 260</span>
+            <div class="combo-box" style="background: #fffbeb; border-color: #fde68a;">
+                <div>
+                    <span class="combo-title" style="color: #92400e;">Funil completo</span>
+                    <span class="combo-sub" style="color: #92400e;">Front + Upsell + Downsell + Crosssell + Obrigado</span>
+                </div>
+                <span class="combo-price" style="color: #d97706;">R$ 260</span>
             </div>
         </div>
 
         <!-- SERVIÇOS EXTRAS -->
-        <h2 class="section-title">Serviços Extras</h2>
-        
+        <h2 class="section-title">Serviços extras</h2>
         <div class="table-responsive">
             <table>
                 <thead>
@@ -498,14 +498,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Configurar domínio</td><td class="text-right font-bold">R$ 20</td></tr>
-                    <tr><td>Configurar GitHub Pages</td><td class="text-right" style="color: var(--success); font-weight: 600;">Gratuito</td></tr>
-                    <tr><td>Pixel Facebook</td><td class="text-right">R$ 15</td></tr>
-                    <tr><td>Pixel TikTok</td><td class="text-right">R$ 15</td></tr>
-                    <tr><td>Google Analytics</td><td class="text-right">R$ 15</td></tr>
-                    <tr><td>Formulário de captura</td><td class="text-right">R$ 15</td></tr>
-                    <tr><td>Botão WhatsApp flutuante</td><td class="text-right">R$ 10</td></tr>
-                    <tr><td>Contador regressivo</td><td class="text-right">R$ 10</td></tr>
+                    <tr><td>Configurar domínio</td><td class="text-right font-bold text-primary">R$ 20</td></tr>
+                    <tr><td>Configurar GitHub Pages</td><td class="text-right font-bold" style="color: var(--success);">Gratuito</td></tr>
+                    <tr><td>Pixel Facebook</td><td class="text-right font-bold">R$ 15</td></tr>
+                    <tr><td>Pixel TikTok</td><td class="text-right font-bold">R$ 15</td></tr>
+                    <tr><td>Google Analytics</td><td class="text-right font-bold">R$ 15</td></tr>
+                    <tr><td>Formulário de captura</td><td class="text-right font-bold">R$ 15</td></tr>
+                    <tr><td>Botão WhatsApp flutuante</td><td class="text-right font-bold">R$ 10</td></tr>
+                    <tr><td>Contador regressivo</td><td class="text-right font-bold">R$ 10</td></tr>
                 </tbody>
             </table>
         </div>
