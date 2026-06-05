@@ -435,6 +435,108 @@ tr:hover td {
         white-space: normal;
     }
 }
+
+        /* UTILITÁRIOS */
+
+.two-columns{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+.combo-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.combo-card{
+    background:var(--light-bg);
+    border:1px solid var(--border);
+    padding:15px;
+    border-radius:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.combo-card.success{
+    background:#f0fdf4;
+    border-color:#bbf7d0;
+}
+
+.combo-card.warning{
+    background:#fffbeb;
+    border-color:#fde68a;
+}
+
+.info-box{
+    background:white;
+    border-radius:12px;
+    padding:25px;
+    border:1px solid var(--border);
+    box-shadow:var(--card-shadow);
+    margin-bottom:25px;
+}
+
+.feature-item{
+    background:var(--light-bg);
+    padding:12px;
+    border-radius:8px;
+    border-left:3px solid var(--success);
+    font-size:.9rem;
+    color:var(--slate);
+}
+
+.code-block{
+    color:var(--primary);
+    display:block;
+    word-break:break-word;
+}
+
+.text-muted{
+    color:var(--slate);
+}
+
+.mt-10{
+    margin-top:10px;
+}
+
+.mb-15{
+    margin-bottom:15px;
+}
+
+.mb-20{
+    margin-bottom:20px;
+}
+
+/* RESPONSIVIDADE EXTRA */
+
+@media (max-width:768px){
+
+    .two-columns{
+        grid-template-columns:1fr;
+    }
+
+    .combo-card{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .combo-card span:last-child{
+        font-size:1.1rem !important;
+    }
+
+    .info-box{
+        padding:18px;
+    }
+
+    .feature-item{
+        font-size:.85rem;
+    }
+}
+        
 </style>
 </head>
 <body>
@@ -451,7 +553,7 @@ tr:hover td {
         
         <!-- COMO FUNCIONARÁ O SERVIÇO -->
         <h2 class="section-title">Como funcionará o serviço</h2>
-        <div class="grid-2">
+        <div class="two-columns">
             <!-- HOSPEDAGEM GRÁTIS -->
             <div class="card">
                 <div class="card-header">
@@ -525,7 +627,7 @@ tr:hover td {
             </div>
         </div>
 
-        <div class="grid-2">
+        <div class="two-columns">
             <!-- PLANO BÁSICO -->
             <div class="card" style="border-top: 4px solid var(--slate);">
                 <div class="card-header">
@@ -572,7 +674,7 @@ tr:hover td {
                 <span class="tag-premium" style="background-color: #e2e8f0; color: #475569;">Padrão Essential</span>
             </div>
 
-            <div class="grid-2" style="grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div class="two-columns" style="grid-template-columns: 1fr 1fr; gap: 30px;">
                 <div>
                     <h4 style="margin-bottom: 12px; color: var(--dark); font-size: 1.1rem;">Preço por Página Individual</h4>
                     <table>
@@ -595,14 +697,14 @@ tr:hover td {
                 <div>
                     <h4 style="margin-bottom: 12px; color: var(--dark); font-size: 1.1rem;">Pacotes Promocionais Combo</h4>
                     <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <div style="background: var(--light-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                        <div class="combo-card">
                             <div>
                                 <span class="font-bold" style="display: block; font-size: 0.95rem;">Combo Essencial</span>
                                 <span style="font-size: 0.8rem; color: var(--slate);">Front + Upsell + Downsell</span>
                             </div>
                             <span class="font-bold text-primary" style="font-size: 1.2rem;">R$ 110,00</span>
                         </div>
-                        <div style="background: var(--light-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                        <div class="combo-card">
                             <div>
                                 <span class="font-bold" style="display: block; font-size: 0.95rem;">Combo Standard</span>
                                 <span style="font-size: 0.8rem; color: var(--slate);">Front + Upsell + Downsell + Obrigado</span>
@@ -631,7 +733,7 @@ tr:hover td {
                 <span class="tag-premium">Alta Performance</span>
             </div>
 
-            <div class="grid-2" style="grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div class="two-columns" style="grid-template-columns: 1fr 1fr; gap: 30px;">
                 <div>
                     <h4 style="margin-bottom: 12px; color: var(--dark); font-size: 1.1rem;">Preço por Página Individual</h4>
                     <table>
@@ -654,14 +756,14 @@ tr:hover td {
                 <div>
                     <h4 style="margin-bottom: 12px; color: var(--dark); font-size: 1.1rem;">Pacotes Promocionais Combo</h4>
                     <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <div style="background: var(--light-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                        <div class="combo-card">
                             <div>
                                 <span class="font-bold" style="display: block; font-size: 0.95rem;">Combo Pro Max</span>
                                 <span style="font-size: 0.8rem; color: var(--slate);">Front + Upsell + Downsell</span>
                             </div>
                             <span class="font-bold text-primary" style="font-size: 1.2rem;">R$ 180,00</span>
                         </div>
-                        <div style="background: var(--light-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                        <div class="combo-card">
                             <div>
                                 <span class="font-bold" style="display: block; font-size: 0.95rem;">Combo Pro Ultra</span>
                                 <span style="font-size: 0.8rem; color: var(--slate);">Front + Upsell + Downsell + Obrigado</span>
